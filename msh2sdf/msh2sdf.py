@@ -33,20 +33,21 @@ def _create_square_background_mesh(side:int, nseed:int=100) -> ndarray:
     return XB
 
 
-def compute_sdf(X:ndarray, T:ndarray, side:float=5) -> (ndarray, ndarray):
+def compute_sdf(X:ndarray, T:ndarray, side:float=5, nseed:int=100) -> (ndarray, ndarray):
     """Compute the signed distance function.
 
     Args:
         X (ndarray): Coordinate matrix of the surface.
         T (ndarray): Connectivity matrix of the surface.
         side (float): Side length of the background mesh.
+        nseed (int): Number of seed points of the background mesh.
 
     Returns:
         ndarray: Signed distance function over the background mesh.
         ndarray: The supporting background mesh.
     """
     
-    XB = _create_square_background_mesh(side=side)
+    XB = _create_square_background_mesh(side=side, nseed=nseed)
     tree = cKDTree(data=X, copy_data=False)  
     distances, indices = tree.query(XB, k=1,)
 
