@@ -1,26 +1,16 @@
+[tool.poetry]
+name = "msh2sdf"
+version = "0.1.0"
+description = "A Python package designed for unfitted finite element simulations."
+authors = ["Stephan Gahima"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.14"
+
+[tool.poetry.dev-dependencies]
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[project]
-name = "msh2sdf"
-version = "0.1"
-description = "Mesh to Signed Distance Function: a Python package designed for unfitted finite element simulations."
-readme = "README.md"
-license = "MIT"
-authors = [
-    {name = "Stephan Gahima", email = "stphnghm@proton.me"}
-]
-maintainers = [
-    {name = "Stephan Gahima", email = "stphnghm@proton.me"}
-]
-dependencies = [
-    "scipy >=1.17.0",
-    "numpy >=2.4.2"
-]
-keywords = ["mesh", "sdf", "unfitted", "fem"]
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
-]
