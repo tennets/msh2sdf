@@ -11,7 +11,7 @@ background mesh facilitating unfitted finite element methodologies.
 from importlib.metadata import version
 
 
-from msh2sdf import compute_sdf, plot_sdf, get_circle_example
+from .msh2sdf import compute_sdf, plot_sdf, get_circle_example
 
 
 __version__ = version("msh2sdf")
