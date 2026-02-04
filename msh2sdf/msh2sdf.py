@@ -20,8 +20,8 @@ def _create_square_background_mesh(side:int, nseed:int=100) -> ndarray:
 
     XB = np.zeros((nseed * nseed, 2))
 
-    x1  = np.linspace(-side, side, num=n)
-    x2c = np.linspace(-side, side, num=n)
+    x1  = np.linspace(-side, side, num=nseed)
+    x2c = np.linspace(-side, side, num=nseed)
 
     for i in range(nseed):
         
