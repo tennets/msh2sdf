@@ -2,3 +2,4 @@
 **/.DS_Store
 **/poetry.lock
 **/.coverage
+**/dist
