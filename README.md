@@ -9,10 +9,14 @@ This surface mesh defines the boundary of the object to be modelled.
 The SDF offers an implicit representation of the surface on a fixed 
 background mesh facilitating unfitted finite element methodologies.
 
+> [!WARNING]
+> This package is currently under active development and is not yet stable.
+> The APIs may undergo significant changes in future releases.
+
 ## Installation
 You can install the package using `pip`:
 ```python
-pip install msh2sdf
+pip install -i https://test.pypi.org/simple/ msh2sdf
 ```
 
 ## Usage
