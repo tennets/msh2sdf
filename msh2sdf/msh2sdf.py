@@ -33,13 +33,13 @@ def _create_square_background_mesh(side:int, nseed:int=100) -> ndarray:
     return XB
 
 
-def compute_sdf(X:ndarray, T:ndarray, side:int=5) -> (ndarray, ndarray):
+def compute_sdf(X:ndarray, T:ndarray, side:float=5) -> (ndarray, ndarray):
     """Compute the signed distance function.
 
     Args:
         X (ndarray): Coordinate matrix of the surface.
         T (ndarray): Connectivity matrix of the surface.
-        side (int): Side length of the background mesh.
+        side (float): Side length of the background mesh.
 
     Returns:
         ndarray: Signed distance function over the background mesh.
