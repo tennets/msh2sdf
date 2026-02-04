@@ -46,7 +46,7 @@ def compute_sdf(X:ndarray, T:ndarray, side:int=5) -> (ndarray, ndarray):
         ndarray: The supporting background mesh.
     """
     
-    XB = _create_square_background_mesh([-l, l,-l,l],)
+    XB = _create_square_background_mesh(side=side)
     tree = cKDTree(data=X, copy_data=False)  
     distances, indices = tree.query(XB, k=1,)
 
