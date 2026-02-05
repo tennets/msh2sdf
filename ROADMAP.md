@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > For the moment, `msh2sdf` supports only 2D triangular meshes.
 
-- [ ] **Vectorize** the loop over the background mesh in `compute_sdf`.
+- [x] **Vectorize** the loop over the background mesh in `compute_sdf`.
 - [ ] Add a submodule **`create`** to handle the generation of different background meshes. For example:
     ```python
     >>> import msh2sdf as ms
