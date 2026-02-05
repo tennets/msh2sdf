@@ -29,6 +29,24 @@ sdf, XB = ms.compute_sdf(X,T,)
 ms.plot_sdf(sdf,XB,X)
 ```
 
+## Development
+### Setup 
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/tennets/msh2sdf.git
+    cd msh2sdf
+    ```
+2. Install development dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+### Running Tests
+To run the tests, execute:
+```bash
+pytest tests/
+```
+Ensure all tests pass before submitting changes.
+
 ## Contributing
 Contributions and feedback are welcome! Please submit a pull request or open an issue for discussion.
 
