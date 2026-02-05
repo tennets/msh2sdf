@@ -1,6 +1,6 @@
 # `msh2sdf`
 
-`msh2sdf` is a Python package designed for unfitted finite element simulations.
+> `msh2sdf` is a Python package for unfitted finite element simulations that provides an implicit geometric description of a mesh using a signed distance function.
 
 It computes a signed distance function (SDF) to a specified surface 
 mesh, on the nodes of a background mesh.
