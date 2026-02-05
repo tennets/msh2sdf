@@ -33,6 +33,35 @@ def _create_square_background_mesh(side:int, nseed:int=100) -> ndarray:
     return XB
 
 
+def _find_closest_faces(T:ndarray, indices:ndarray) -> list:
+    """Retrieve the row indices of T where T[i, 0] matches an element in indices.
+
+    This function identifies all row indices in T for which `T[i, 0]` equals 
+    `indices[j]` for some indices `i` and `j`. It is important to note that 
+    `indices` may contain duplicates, as multiple nodes in the background mesh 
+    `XB` can share the same closest node defined by `X[indices[j]]`.
+
+    Args:
+        T (ndarray): Connectivity matrix of the surface.
+        indices (ndarry): Indices of the closest node. Indices
+                          refers to `X`.
+
+    Returns:
+        list: Row indices.
+    """
+
+    indices_flat = indices.flatten()
+
+    sorted_T = np.sort(T[:, 0])
+    original_indices = np.argsort(T[:, 0])
+
+    indices_in_T = np.searchsorted(sorted_T, indices_flat)
+    
+    result_indices = original_indices[indices_in_T]
+
+    return result_indices.tolist()
+
+
 def compute_sdf(X:ndarray, T:ndarray, side:float=5, nseed:int=100) -> (ndarray, ndarray):
     """Compute the signed distance function.
 
@@ -49,32 +78,24 @@ def compute_sdf(X:ndarray, T:ndarray, side:float=5, nseed:int=100) -> (ndarray, 
     
     XB = _create_square_background_mesh(side=side, nseed=nseed)
     tree = cKDTree(data=X, copy_data=False)  
-    distances, indices = tree.query(XB, k=1,)
+    signed_distances, indices = tree.query(XB, k=1)
 
-    signed_distances = np.zeros(XB.shape[0],)
+    # Identify the two closest nodes to XB[i] (P) and
+    # establish a fixed direction using the connectivity matrix.
+    # The closest node (A) is always the first on the edge, 
+    # ensuring consistent direction. 
+    # The second closest node (B) is the second on the edge. 
+    # With the direction set, we then determine the sign based
+    # on the third component of the cross product.
 
-    for i, idx in enumerate(indices):
-        # Identify the two closest nodes to XB[i] (P) and
-        # establish a fixed direction using the connectivity matrix.
-        # The closest node (A) is always the first on the edge, 
-        # ensuring consistent direction. 
-        # The second closest node (B) is the second on the edge. 
-        # With the direction set, we then determine the sign based
-        # on the third component of the cross product.
-        signed_distance = np.linalg.norm(XB[i] - X[idx])
- 
-        idx_closest = np.flatnonzero((T[:, 0] == idx))[0]
+    idx = _find_closest_faces(T, indices)
 
-        A, B = X[T[idx_closest, 0]], X[T[idx_closest, 1]]
-        P = XB[i]
-        AB = B - A
-        AP = P - A
+    A, B = X[T[idx, 0]], X[T[idx, 1]]
+    AB = np.hstack([B - A, np.zeros((XB.shape[0], 1))])
+    AP = np.hstack([XB - A, np.zeros((XB.shape[0], 1))])
 
-        CPV = np.cross(np.hstack([AB, 0]),  np.hstack([AP, 0]))
-        if CPV[-1] < 0:
-            signed_distance *= -1
-
-        signed_distances[i] = signed_distance
+    cross_prod = np.cross(AB, AP, axis=1)
+    signed_distances[cross_prod[:, 2] < 0] *= -1
 
     return (signed_distances, XB)
 
