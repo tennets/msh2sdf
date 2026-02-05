@@ -21,5 +21,11 @@ build-backend = "poetry.core.masonry.api"
 [dependency-groups]
 dev = [
     "pytest (>=9.0.2,<10.0.0)",
-    "pytest-cov (>=7.0.0,<8.0.0)"
+    "pytest-cov (>=7.0.0,<8.0.0)",
+    "python-semantic-release (>=10.5.3,<11.0.0) ; python_version >= \"3.12\" and python_version < \"4.0\""
+]
+
+[tool.semantic_release]
+version_toml = [
+    "pyproject.toml:tool.poetry.version",
 ]
