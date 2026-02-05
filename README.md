@@ -11,7 +11,7 @@ background mesh facilitating unfitted finite element methodologies.
 
 > [!WARNING]
 > This package is currently under active development and is not yet stable.
-> The APIs may undergo significant changes in future releases.
+> The APIs may undergo significant changes in future releases. See [ROADMAP](./ROADMAP.md) for more details.
 
 ## Installation
 You can install the package using `pip`:
