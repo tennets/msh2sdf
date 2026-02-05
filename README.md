@@ -30,7 +30,7 @@ ms.plot_sdf(sdf,XB,X)
 ```
 
 ## Contributing
-Contributions are welcome! Please submit a pull request or open an issue for discussion.
+Contributions and feedback are welcome! Please submit a pull request or open an issue for discussion.
 
 ## Licence
 This package is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
