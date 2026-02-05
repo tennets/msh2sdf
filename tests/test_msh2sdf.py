@@ -1,6 +1,25 @@
 import msh2sdf.msh2sdf as ms
 import numpy as np
 
+
+def test___find_closest_faces():
+    """Test `_find_closest_faces`"""
+    
+    T = np.array([
+        [1, 10], # 0
+        [2, 20], # 1
+        [3, 30], # 2
+        [4, 40], # 3
+        [5, 50]  # 4
+    ])
+    indices = np.array([2, 4, 4, 5, 1])
+
+    expected = [1, 3, 3, 4, 0]
+
+    actual = ms._find_closest_faces(T, indices)
+    assert expected == actual, "Closest faces not computed correctly"
+
+
 def test_compute_sdf():
     """Test `compute_sdf`"""
 
